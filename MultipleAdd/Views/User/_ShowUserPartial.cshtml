@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MultipleAdd.ViewModel.UserViewModel>
+
+@{
+    var count = 1;
+}
+
+@foreach (var item in Model)
+{
+
+    <tr id="row_@item.UserId">
+        <td>@item.Name</td>
+        <td>@item.Country.CountryName</td>
+        <td>@item.States.StateName</td>
+        <td>@item.Cities.CityName</td>
+        <td>    
+            @switch (item.Status)
+            {
+                case 1:
+                    <label id="draft" class="status" style="color: grey;">Draft</label>
+                    <a href="#" class="btn btn-warning submit-button" onClick="StatusChange({ Status: 2, UserId: @item.UserId })">Submit</a>
+                    break;
+                case 2:
+                    <label id="submitted" class="status" style="color: orange;">Submitted</label>
+                    <a href="#" class="btn btn-primary approve-button" onClick="StatusChange({ Status: 3, UserId: @item.UserId })">Approve</a>
+                    <a href="#" class="btn btn-danger reject-button" onClick="StatusChange({ Status: 4, UserId: @item.UserId })">Reject</a>
+                    break;
+                case 3:
+                    <label id="approved" class="status" style="color: green;">Approved</label>
+                    break;
+                case 4:
+                    if(item.Count == 2)
+                    {
+                        <label id="rejected" class="status" style="color: red;">Rejected</label>
+                    }
+                    if(item.Count == 1)
+                    {
+                        <a href="#" class="btn btn-primary reinitiate-button" style="background-color: blue; color: white;" onClick="StatusChange({ Status: 1, UserId: @item.UserId })">Reinitiate</a>
+                    }
+                    break;
+                default:
+                    <span>Status Unknown</span>
+                    break;
+            }
+        </td>
+        
+    </tr>
+  
+}
+

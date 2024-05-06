@@ -1,0 +1,13 @@
+﻿@model MultipleAdd.ViewModel.FormViewModel
+
+    <form id="@Model.FormId">
+    <input type="text" class="name-input" name="name-input" style="height: 39px; " placeholder="Enter Name" required>
+    <select class="country" name="country" style="height: 39px;" required><option selected>--- Select Country ---</option></select>
+    <select class="state" name="state" style="height: 39px;" required><option   selected>--- Select State ---</option></select>
+    <select class="city" name="city" style="height: 39px;" required><option  selected>--- Select City ---</option></select>
+
+    <a href="#" class="btn btn-primary  save-button" onclick="SaveSingleRecord(@Model.FormId)">Save</a> 
+    <a href="#" class="btn btn-danger  discard-button">Discard</a>
+    
+    </form>
+
